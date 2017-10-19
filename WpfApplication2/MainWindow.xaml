@@ -1,0 +1,431 @@
+﻿<Controls:MetroWindow x:Class="hkm_library_db.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:local="clr-namespace:hkm_library_db.Converters"
+        Title="Library Database" 
+                      Height="720"
+                      Width="1280" 
+                      FontFamily="Calibri"  
+                      Background="#FF212020"
+                      WindowTitleBrush="#2D2D30">
+
+    <Window.Resources>
+
+
+        <local:TabSizeConverter x:Key="tabSizeConverter" />
+        <Style TargetType="{x:Type TabItem}">
+            <Setter Property="Width">
+                <Setter.Value>
+                    <MultiBinding Converter="{StaticResource tabSizeConverter}">
+                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,
+            AncestorType={x:Type TabControl}}" />
+                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,
+            AncestorType={x:Type TabControl}}" Path="ActualWidth" />
+                    </MultiBinding>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+
+
+
+    <TabControl 
+        Padding="0" 
+        Background="Transparent" 
+        Foreground="#00000000" 
+        Margin="0,-20,0,0"
+        >
+
+        <TabItem 
+            Header="New Entry" 
+            Controls:ControlsHelper.HeaderFontSize="12"
+            Background="#3F3F46"
+            Foreground="Orange"
+            Margin="-1,20,-1,-20"
+            Width="100"
+           >
+
+
+
+            <Grid Margin="0,0,0,0" 
+          Background="#2D2D30">
+
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition 
+                Width="Auto" />
+
+
+                    <ColumnDefinition
+                Width="*" />
+                    <!--<<< Exact Height... won't resize -->
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition 
+                Height="*" />
+
+
+                    <RowDefinition 
+                Height="Auto" />
+                    <!--<<< Exact Height... won't resize -->
+                </Grid.RowDefinitions>
+
+
+
+                <DataGrid  Name="dataGrid1" 
+                   Margin="0,0,5,10" 
+                   Grid.Column="1" 
+                   Background="#252526" 
+                   RowBackground="White"
+                   Foreground="Black"
+                   AlternationCount="2"
+                   AlternatingRowBackground="LightGray" 
+                  >
+
+                    <DataGrid.Resources>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter 
+                        Property="Background" 
+                            Value="#686868" />
+                            <Setter
+                        Property="Height" 
+                        Value="25"/>
+                            <Setter 
+                        Property="Foreground" 
+                            Value="White"/>
+                            <Setter 
+                        Property="FontSize"
+                        Value="16"/>
+
+                            <Setter 
+                        Property="FontWeight"
+                        Value="Bold"/>
+                        </Style>
+                        <Style TargetType="{x:Type DataGridCell}">
+                            <Setter 
+                        Property="FontSize"
+                        Value="16"
+                        />
+                        </Style>
+
+                    </DataGrid.Resources>
+
+
+                </DataGrid>
+
+                <TextBox Name="txtbx2" 
+                 HorizontalAlignment="Left" 
+                 Height="23" 
+                 Margin="10,42,10,0" 
+                 TextWrapping="NoWrap"
+                 VerticalAlignment="Top" 
+                 Width="300"/>
+                <TextBox Name="txtbx1" 
+                 HorizontalAlignment="Left" 
+                 Height="23"
+                 Margin="10,93,0,0" 
+                 TextWrapping="NoWrap" 
+                 VerticalAlignment="Top"
+                 Width="300"/>
+                <TextBox Name="txtbx3" 
+                 HorizontalAlignment="Left" 
+                 Height="23" 
+                 Margin="10,144,0,0" 
+                 TextWrapping="NoWrap"
+                 VerticalAlignment="Top" 
+                 Width="300"/>
+                <TextBlock HorizontalAlignment="Left" 
+                   Margin="16,22,0,0" 
+                   TextWrapping="Wrap" 
+                   Text="Book Name" 
+                   VerticalAlignment="Top" 
+                   Foreground="White"/>
+                <TextBlock HorizontalAlignment="Left" 
+                   Margin="16,124,0,0" 
+                   TextWrapping="Wrap" 
+                   Text="Genre" 
+                   VerticalAlignment="Top" 
+                   RenderTransformOrigin="0.567,2.333" 
+                   Foreground="White"/>
+                <TextBlock HorizontalAlignment="Left" 
+                   Margin="16,73,0,0" 
+                   TextWrapping="Wrap" 
+                   Text="Author Name" 
+                   VerticalAlignment="Top" 
+                   RenderTransformOrigin="0.567,2.333" 
+                   Foreground="White"/>
+                <Button Content="Save" 
+                HorizontalAlignment="Right" 
+                Margin="0,659,10,0" 
+                VerticalAlignment="Top"
+                Background="Orange"
+                Width="100" 
+                Height="25" 
+                Click="Button_Click" />
+
+                <TextBox x:Name="txtbx4" 
+        	HorizontalAlignment="Left" 
+        	Height="23" 
+        	Margin="10,195,0,0" 
+        	TextWrapping="NoWrap"
+        	VerticalAlignment="Top" 
+        	Width="300"/>
+                <TextBlock HorizontalAlignment="Left" 
+        	Margin="16,175,0,0" 
+        	TextWrapping="NoWrap" 
+        	Text="ISBN" 
+        	VerticalAlignment="Top" 
+        	RenderTransformOrigin="0.567,2.333" 
+        	Foreground="White"/>
+                <TextBox x:Name="txtbx5" 
+        	HorizontalAlignment="Left" 
+        	Height="23" 
+        	Margin="10,246,0,0" 
+        	TextWrapping="NoWrap"
+        	VerticalAlignment="Top" 
+        	Width="300"/>
+                <TextBlock HorizontalAlignment="Left" 
+        	Margin="16,226,0,0" 
+        	TextWrapping="Wrap" 
+        	Text="Code" 
+        	VerticalAlignment="Top" 
+        	RenderTransformOrigin="0.567,2.333" 
+        	Foreground="White"/>
+
+                <Image 
+                    Name="book_image"
+                    Height="317" 
+                    Width="300"
+                    Margin="10,328,10,44"                    
+                    />
+                <Button Content="Save Image" 
+                	HorizontalAlignment="Right" 
+                	Margin="0,297,210,0" 
+                	VerticalAlignment="Top"
+                	Background="Orange"
+                	Width="100" 
+                	Height="24" Click="save_image"/>
+                <TextBox x:Name="image_link" 
+                	HorizontalAlignment="Left" 
+                	Height="23" 
+                	Margin="115,297,0,0" 
+                	TextWrapping="NoWrap"
+                	VerticalAlignment="Top" 
+                	Width="195"/>
+                <TextBlock HorizontalAlignment="Left" 
+                	Margin="16,277,0,0" 
+                	TextWrapping="Wrap" 
+                	VerticalAlignment="Top" 
+                	RenderTransformOrigin="0.567,2.333" 
+                	Foreground="White" Width="30" Text="Image"/>
+
+            </Grid>
+        </TabItem>
+
+
+
+        <TabItem 
+                Header="Update Entry"
+                Controls:ControlsHelper.HeaderFontSize="12"
+                Background="#3F3F46"
+                Foreground="Orange"
+                Margin="0,20,0,-20" 
+                Width="100">
+
+            <Grid Margin="0,0,0,0" 
+          Background="#2D2D30">
+
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition 
+                Width="Auto" />
+
+
+                    <ColumnDefinition
+                Width="*" />
+                    <!--<<< Exact Height... won't resize -->
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition 
+                Height="*" />
+
+
+                    <RowDefinition 
+                Height="Auto" />
+                    <!--<<< Exact Height... won't resize -->
+                </Grid.RowDefinitions>
+
+
+
+                <DataGrid  Name="dataGrid2" 
+                   Margin="0,0,5,10" 
+                   Grid.Column="1" 
+                   Background="#252526" 
+                   RowBackground="White"
+                   Foreground="Black"
+                   AlternationCount="2"
+                   AlternatingRowBackground="LightGray" 
+                   SelectionChanged="dataGrid2_SelectionChanged"
+                  >
+
+                    <DataGrid.Resources>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter 
+                        Property="Background" 
+                            Value="#686868" />
+                            <Setter
+                        Property="Height" 
+                        Value="25"/>
+                            <Setter 
+                        Property="Foreground" 
+                            Value="White"/>
+                            <Setter 
+                        Property="FontSize"
+                        Value="16"/>
+
+                            <Setter 
+                        Property="FontWeight"
+                        Value="Bold"/>
+                        </Style>
+                        <Style TargetType="{x:Type DataGridCell}">
+                            <Setter 
+                        Property="FontSize"
+                        Value="16"
+                        />
+                        </Style>
+
+                    </DataGrid.Resources>
+
+
+                </DataGrid>
+
+                <TextBox Name="txtbx2_copy" 
+                 HorizontalAlignment="Left" 
+                 Height="23" 
+                 Margin="10,40,10,0" 
+                 TextWrapping="Wrap"
+                 VerticalAlignment="Top" 
+                 Width="300"/>
+                <TextBox Name="txtbx1_copy" 
+                 HorizontalAlignment="Left" 
+                 Height="23"
+                 Margin="10,91,0,0" 
+                 TextWrapping="Wrap" 
+                 VerticalAlignment="Top"
+                 Width="300"/>
+                <TextBox Name="txtbx3_copy" 
+                 HorizontalAlignment="Left" 
+                 Height="23" 
+                 Margin="10,142,0,0" 
+                 TextWrapping="Wrap"
+                 VerticalAlignment="Top" 
+                 Width="300"/>
+                <TextBlock HorizontalAlignment="Left" 
+                   Margin="16,20,0,0" 
+                   TextWrapping="Wrap" 
+                   Text="Book Name" 
+                   VerticalAlignment="Top" 
+                   Foreground="White"/>
+                <TextBlock HorizontalAlignment="Left" 
+                   Margin="16,122,0,0" 
+                   TextWrapping="Wrap" 
+                   Text="Genre" 
+                   VerticalAlignment="Top" 
+                   RenderTransformOrigin="0.567,2.333" 
+                   Foreground="White"/>
+                <TextBlock HorizontalAlignment="Left" 
+                   Margin="16,71,0,0" 
+                   TextWrapping="Wrap" 
+                   Text="Author Name" 
+                   VerticalAlignment="Top" 
+                   RenderTransformOrigin="0.567,2.333" 
+                   Foreground="White"/>
+                <Button Content="Update" 
+                HorizontalAlignment="Right" 
+                Margin="0,654,10,0" 
+                VerticalAlignment="Top"
+                Background="Orange"
+                Width="100" 
+                Height="25" 
+                Click="Button_Click" />
+                <TextBox x:Name="txtbx4_copy" 
+        	HorizontalAlignment="Left" 
+        	Height="23" 
+        	Margin="10,193,0,0" 
+        	TextWrapping="Wrap"
+        	VerticalAlignment="Top" 
+        	Width="300"/>
+                <TextBlock HorizontalAlignment="Left" 
+        	Margin="16,173,0,0" 
+        	TextWrapping="Wrap" 
+        	Text="ISBN" 
+        	VerticalAlignment="Top" 
+        	RenderTransformOrigin="0.567,2.333" 
+        	Foreground="White"/>
+                <TextBox x:Name="txtbx5_copy" 
+        	HorizontalAlignment="Left" 
+        	Height="23" 
+        	Margin="10,244,0,0" 
+        	TextWrapping="Wrap"
+        	VerticalAlignment="Top" 
+        	Width="300"/>
+                <TextBlock HorizontalAlignment="Left" 
+        	Margin="16,224,0,0" 
+        	TextWrapping="Wrap" 
+        	Text="Code" 
+        	VerticalAlignment="Top" 
+        	RenderTransformOrigin="0.567,2.333" 
+        	Foreground="White"/>
+
+
+                <Label 
+                    Name="no_label"
+                    Content="0"
+                       FontSize="17"
+                       Padding="0"
+                       HorizontalAlignment="Right"
+                       HorizontalContentAlignment="Center"
+                       Margin="0,10,10,0" 
+                       VerticalAlignment="Top" 
+                       Width="20" 
+                       RenderTransformOrigin="0.5,0.455"
+                       Background="Orange"
+                       Foreground="Black"/>
+
+                <Image
+                    Name="Up_book_image"
+                    Height="317"
+                    Width="300" 
+                    Margin="10,326,10,46"/>
+                <TextBlock HorizontalAlignment="Left" 
+                	Margin="16,275,0,0" 
+                	TextWrapping="Wrap" 
+                	Text="Image" 
+                	VerticalAlignment="Top" 
+                	RenderTransformOrigin="0.567,2.333" 
+                	Foreground="White"/>
+                <TextBox x:Name="Up_image_link" 
+                	HorizontalAlignment="Left" 
+                	Height="23" 
+                	Margin="115,295,0,0" 
+                	TextWrapping="NoWrap"
+                	VerticalAlignment="Top" 
+                	Width="195"/>
+                <Button Content="new Image" 
+                	HorizontalAlignment="Right" 
+                	Margin="0,295,210,0" 
+                	VerticalAlignment="Top"
+                	Background="Orange"
+                	Width="100" 
+                	Height="25" 
+                	Click="Button_Click" />
+
+            </Grid>
+        </TabItem>
+    </TabControl>
+
+</Controls:MetroWindow>
