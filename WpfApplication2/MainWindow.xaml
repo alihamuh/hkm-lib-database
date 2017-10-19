@@ -122,7 +122,7 @@
                  Margin="10,42,10,0" 
                  TextWrapping="NoWrap"
                  VerticalAlignment="Top" 
-                 Width="300"/>
+                 Width="300" Text="abcdefgh"/>
                 <TextBox Name="txtbx1" 
                  HorizontalAlignment="Left" 
                  Height="23"
