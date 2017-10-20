@@ -73,6 +73,7 @@ namespace hkm_library_db
 
             //sql_con.Close();  //closing connection
 
+           
         }
 
 
@@ -141,23 +142,37 @@ namespace hkm_library_db
 
             DA = new SQLiteDataAdapter(commandText, sql_con);
 
-            DS.Reset();
+
+            try
+            {
+
+                DS.Reset();
+
+            }
+            catch(System.NullReferenceException e)
+            {
+                //e.Message;
+
+            }
+             
 
             DA.Fill(DS);
 
             DT = DS.Tables[0];
 
             dataGrid1.ItemsSource = DT.DefaultView;
-            //dataGrid1.Loaded += SetMinWidths;
+          
             dataGrid1.MinColumnWidth = 35;
             dataGrid1.MaxColumnWidth = 200;
 
+            //dataGrid1.Columns[1].MinWidth = 35;
+
             dataGrid2.ItemsSource = DT.DefaultView;
-            //dataGrid2.Loaded += SetMinWidths2;
+           
             dataGrid2.MinColumnWidth = 35;
             dataGrid2.MaxColumnWidth = 200;
 
-            //FitToContent();
+      
             
        
            
@@ -206,7 +221,7 @@ namespace hkm_library_db
             Add2();
             LoadData();
 
-            dataGrid1.Loaded += SetMinWidths;
+            //dataGrid1.Loaded += SetMinWidths;
         }
 
 
@@ -222,8 +237,10 @@ namespace hkm_library_db
 
         private void update()
         {
-            string txtSQLQuery = "UPDATE library SET Book_Name='"+txtbx2_copy.Text.ToString()+"',Author_Name='"+txtbx1_copy.Text.ToString()+"',Genre='"+txtbx3_copy.Text.ToString()+"',ISBN='"+txtbx4_copy.Text.ToString()+"',Code='"+txtbx5_copy.Text.ToString()+"' WHERE No = 1";
+
+            string txtSQLQuery = "UPDATE library SET Book_Name='" + txtbx2_copy.Text.ToString() + "',Author_Name='" + txtbx1_copy.Text.ToString() + "',Genre='" + txtbx3_copy.Text.ToString() + "',ISBN='" + txtbx4_copy.Text.ToString() + "',Code='" + txtbx5_copy.Text.ToString() + "',link='" + txtbx5_copy.Text.ToString() + "' WHERE No ="+no_label.Content.ToString();
             executeQuery(txtSQLQuery);
+            
 
 
         }
@@ -242,18 +259,29 @@ namespace hkm_library_db
            string Code = (dataGrid2.SelectedCells[5].Column.GetCellContent(item) as TextBlock).Text;
            string isbn = (dataGrid2.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text;
            string no = (dataGrid2.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-           string link = (dataGrid2.SelectedCells[6].Column.GetCellContent(item) as TextBlock).Text;
 
+           try
+           {
+               string link = (dataGrid2.SelectedCells[6].Column.GetCellContent(item) as TextBlock).Text;
+
+               Up_image_link.Text = link;
+
+
+               Up_book_image.Source = new BitmapImage(new Uri(link, UriKind.Absolute));
+           }
+           catch
+           {
+               Up_image_link.Text = "Please paste a valid link.";
+
+           }
             txtbx1_copy.Text = Auth_name;
             txtbx2_copy.Text = Bk_name;
             txtbx3_copy.Text = Genre;
             txtbx4_copy.Text = isbn;
             txtbx5_copy.Text = Code;
             no_label.Content = no;
-            Up_image_link.Text = link;
-
-            Up_book_image.Source = new BitmapImage(new Uri(link, UriKind.Absolute));
-
+            
+            
         }
 
         private void save_image(object sender, RoutedEventArgs e)
@@ -297,6 +325,13 @@ namespace hkm_library_db
 
         }
 
+        private void update_button(object sender, RoutedEventArgs e)
+        {
+            update();
 
+            LoadData();
+        }
+
+  
     }
 }

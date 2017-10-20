@@ -122,7 +122,7 @@
                  Margin="10,42,10,0" 
                  TextWrapping="NoWrap"
                  VerticalAlignment="Top" 
-                 Width="300" Text="abcdefgh"/>
+                 Width="300"/>
                 <TextBox Name="txtbx1" 
                  HorizontalAlignment="Left" 
                  Height="23"
@@ -233,7 +233,7 @@
                 Background="#3F3F46"
                 Foreground="Orange"
                 Margin="0,20,0,-20" 
-                Width="100">
+                Width="100" Height="19" VerticalAlignment="Top">
 
             <Grid Margin="0,0,0,0" 
           Background="#2D2D30">
@@ -350,8 +350,8 @@
                 VerticalAlignment="Top"
                 Background="Orange"
                 Width="100" 
-                Height="25" 
-                Click="Button_Click" />
+                Height="25" Click="update_button"/>
+                
                 <TextBox x:Name="txtbx4_copy" 
         	HorizontalAlignment="Left" 
         	Height="23" 
@@ -422,7 +422,7 @@
                 	Background="Orange"
                 	Width="100" 
                 	Height="25" 
-                	Click="Button_Click" />
+                    Click="save_image"/>
 
             </Grid>
         </TabItem>
